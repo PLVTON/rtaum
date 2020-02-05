@@ -23,21 +23,21 @@ public class wrmhlWrite : MonoBehaviour {
     [Tooltip("QueueLength")]
     public int QueueLength = 1;
 
-    void Start () {
+    void Start() {
         // This method set the communication with the following vars
-        myDevice.set (portName, baudRate, ReadTimeout, QueueLength);
+        myDevice.Set(portName, baudRate, ReadTimeout, QueueLength);
         // This method open the Serial communication with the vars previously given
-        myDevice.connect();
+        myDevice.Connect();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         // Send data to the device using thread
-        myDevice.send(dataToSend);
+        myDevice.Send(dataToSend);
     }
 
     // Close the Thread and Serial Port
     void OnApplicationQuit() {
-        myDevice.close();
+        myDevice.Close();
     }
 }

@@ -10,35 +10,30 @@ namespace wrmhl {
         private IOThreadLines deviceReader;
 
         // Creates the thread with the variables needed for connecting your device and Unity
-        public void set(string portName, int baudRate, int readTimeout, int QueueLength) {
+        public void Set(string portName, int baudRate, int readTimeout, int QueueLength) {
             deviceReader = new IOThreadLines(portName, baudRate, readTimeout, QueueLength);                                             
         }
 
-        // Setting up the connection between your device and Unity without readTimeout
-        public void set(string portName, int baudRate) {
-            deviceReader = new IOThreadLines(portName, baudRate);      
-        }
-
         // Connect the device and unity
-        public void connect() {
+        public void Connect() {
             // Open the Serial Port data flow first
-            deviceReader.openFlow();
-            deviceReader.startThread();
+            deviceReader.OpenFlow();
+            deviceReader.StartThread();
         }
 
         // Disconnect the device and unity
-        public void close() {
+        public void Close() {
             deviceReader.StopThread();
         }
 
         // Read the data from your device
-        public string readQueue() {
-            return deviceReader.readQueueThread();
+        public string ReadQueue() {
+            return deviceReader.ReadQueueThread();
         }
 
         // Sends the data to your device
-        public void send(string dataToSend) {
-            deviceReader.writeThread(dataToSend);
+        public void Send(string dataToSend) {
+            deviceReader.WriteThread(dataToSend);
         }
     }
 }

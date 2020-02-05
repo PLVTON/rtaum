@@ -11,7 +11,7 @@ namespace wrmhl {
         }
 
         // This constructor will call wrmhlThread.wrmhlThread(string portName, int baudRate)
-        public IOThreadLines(string portName, int baudRate) : base(portName, baudRate){
+        public IOThreadLines(string portName, int baudRate) : base(portName, baudRate) {
         }
 
         public override string ReadProtocol() {

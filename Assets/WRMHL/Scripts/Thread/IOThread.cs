@@ -42,16 +42,16 @@ namespace wrmhl {
         }
 
         // Creates and starts the thread
-        public void startThread() {
+        public void StartThread() {
             outputQueue = Queue.Synchronized( new Queue() );
             inputQueue  = Queue.Synchronized( new Queue() );
 
-            WRMHLthread = new Thread (ThreadLoop);
-            WRMHLthread.Start ();
+            WRMHLthread = new Thread(ThreadLoop);
+            WRMHLthread.Start();
         }
 
         // Open the SerialPort with the vars given by wrmhl
-        public void openFlow() {
+        public void OpenFlow() {
             // Define the SerialPort
             deviceSerial = new SerialPort(this.portName, this.baudRate);
             // Set the readTimeout
@@ -61,7 +61,7 @@ namespace wrmhl {
         }
 
         // This method is used to stop the thread
-        public void StopThread () {
+        public void StopThread() {
             lock (this) {
                 // This var is used for the thread's while loop by the threadIsLooping method
                 looping = false;
@@ -69,33 +69,33 @@ namespace wrmhl {
         }
 
         // This method is used to return to the thread's looping value
-        public bool threadIsLooping () {
+        public bool ThreadIsLooping() {
             lock (this) {
                 return looping;
             }
         }
 
         // Return the data stocked in the Queue. Independent from the protocol
-        public string readQueueThread() { 
+        public string ReadQueueThread() { 
             if (inputQueue.Count == 0)
                 return null;
 
-            return (string)inputQueue.Dequeue ();
+            return (string)inputQueue.Dequeue();
         }
 
         // [TO-DO] Return the data stocked in the Queue. Independent from the protocol
-        public string readLatestThread() { 
+        public string ReadLatestThread() { 
             return null; // TO DO: Delete it
         }
 
         // Add the data to the write Queue. Independent from the protocol
-        public void writeThread(string dataToSend) {
-            outputQueue.Enqueue (dataToSend);
+        public void WriteThread(string dataToSend) {
+            outputQueue.Enqueue(dataToSend);
         }
 
         // Main thread loop
         public void ThreadLoop() {
-            while (threadIsLooping ()) {
+            while (ThreadIsLooping()) {
                 // Read data
                 object dataComingFromDevice = ReadProtocol();
                 if (dataComingFromDevice != null) {

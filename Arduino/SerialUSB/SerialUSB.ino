@@ -13,7 +13,7 @@ void loop() {
   delay(5); // Choose your delay having in mind your ReadTimeout in Unity
 }
 
-void sendData(String data){
+void sendData(String data) {
   Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
 }
 

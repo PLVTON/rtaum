@@ -33,21 +33,21 @@ public class wrmhlRead : MonoBehaviour {
     [Tooltip("QueueLength")]
     public int QueueLength = 1;
 
-    void Start () {
+    void Start() {
         // This method set the communication with the following vars
-        myDevice.set (portName, baudRate, ReadTimeout, QueueLength);
+        myDevice.Set(portName, baudRate, ReadTimeout, QueueLength);
         // This method open the Serial communication with the vars previously given
-        myDevice.connect ();
+        myDevice.Connect();
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update() {
         // myDevice.readQueue() return the data coming from the device using thread
-        Debug.Log(myDevice.readQueue()); 
+        Debug.Log(myDevice.ReadQueue()); 
     }
 
     void OnApplicationQuit() {
         // Close the Thread and Serial Port
-        myDevice.close();
+        myDevice.Close();
     }
 }
