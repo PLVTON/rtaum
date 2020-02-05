@@ -19,7 +19,7 @@ readQueue() will return ->
 public class wrmhlRead : MonoBehaviour {
 
     // wrmhl is the bridge beetwen your computer and hardware
-    wrmhl myDevice = new wrmhl();
+    wrmhl.DeviceReader myDevice = new wrmhl.DeviceReader();
 
     [Tooltip("SerialPort of your device.")]
     public string portName = "COM8";

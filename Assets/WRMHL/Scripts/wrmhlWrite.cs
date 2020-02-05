@@ -6,7 +6,7 @@ using UnityEngine;
 public class wrmhlWrite : MonoBehaviour {
 
     // wrmhl is the bridge beetwen your computer and hardware
-    wrmhl myDevice = new wrmhl();
+    wrmhl.DeviceReader myDevice = new wrmhl.DeviceReader();
 
     [Tooltip("SerialPort of your device.")]
     public string portName = "COM8";
@@ -27,7 +27,7 @@ public class wrmhlWrite : MonoBehaviour {
         // This method set the communication with the following vars
         myDevice.set (portName, baudRate, ReadTimeout, QueueLength);
         // This method open the Serial communication with the vars previously given
-        myDevice.connect ();
+        myDevice.connect();
     }
 
     // Update is called once per frame
