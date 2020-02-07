@@ -4,7 +4,7 @@ using UnityEngine;
 using System.Threading;
 using System.IO.Ports;
 
-namespace bbaum {
+namespace rtaum {
     public abstract class IOThread {
 
         // IOThread is the common Thread for receiving and sending data, but it's protocols depend on the derived class you use.
@@ -27,7 +27,7 @@ namespace bbaum {
 
         private int QueueLength = 1;
 
-        // Constructor take the variables coming from bbaum
+        // Constructor take the variables coming from rtaum
         public IOThread(string portName, int baudRate, int readTimeout, int QueueLength) {
             this.portName = portName;
             this.baudRate = baudRate;
@@ -50,7 +50,7 @@ namespace bbaum {
             thread.Start();
         }
 
-        // Open the SerialPort with the parameters given by bbaum
+        // Open the SerialPort with the parameters given by rtaum
         public void OpenFlow() {
             deviceSerial = new SerialPort(this.portName, this.baudRate);
             deviceSerial.ReadTimeout = this.readTimeout;

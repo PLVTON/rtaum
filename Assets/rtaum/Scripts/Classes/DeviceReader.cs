@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace bbaum {
+namespace rtaum {
     // This class allow you to establish the connection between your device and Unity by setting-up Thread and manage these Thread
     public class DeviceReader {
 

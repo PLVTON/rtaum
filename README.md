@@ -1,21 +1,21 @@
 <h1 align="center">
   <br>
-  <a href=""><img src="/img/bbuam.png" width="150"></a>
+  <!-- <a href=""><img src="/img/rtaum.png" width="150"></a> -->
 </h1>
 
-<h4 align="center">Real time messaging between Unity and Microcontrollers</h4>
+<h4 align="center">Real Time Arduino to Unity Messaging</h4>
 
 <p align="center">
-  <img src="https://img.shields.io/github/license/PLVTON/bbuam">
+  <img src="https://img.shields.io/github/license/PLVTON/rtaum">
 	<a href="https://twitter.com/PLVTON"><img alt="Twitter" src="https://img.shields.io/twitter/url?label=Contact&style=social&url=https%3A%2F%2Ftwitter.com%2FPLVTON"></a>
 </p>
 
 <hr/>
 
-**bbuam** is a solution to exchange data between Unity and microcontrollers (e.g., Arduino or Adafruit). This project started as a fork of [wrmhl](https://github.com/relativty/wrmhl).
+**rtaum** is a solution to exchange data between Unity and microcontrollers (e.g., Arduino or Adafruit). This project started as a fork of [wrmhl](https://github.com/relativty/wrmhl).
 
 <p align="center">
-<img src="/img/mpu.gif" width="500">
+  <img src="/img/mpu.gif" width="500">
 </p>
 
 ## Getting Started
@@ -27,12 +27,12 @@ The [Arduino IDE](https://www.arduino.cc/en/main/software) to upload the program
 On the hardware side, you will need an Arduino-IDE compatible microcontroller with a usb-cable to link it to your computer.
 
 ### Installation
-The easiest way to download *bbuam* is to download the [latest Unity package](/UnityPackages/bbuam.unitypackage) and import it in your project.
+The easiest way to download *rtaum* is to download the [latest Unity package](/UnityPackages/rtaum-v0.1.1.unitypackage) and import it in your project.
 
-Otherwise, *bbuam* can be downloaded using [Git](https://git-scm.com/) with the following command:
+Otherwise, *rtaum* can be downloaded using [Git](https://git-scm.com/) with the following command:
 
 ```bash
-$ git clone https://github.com/PLVTON/bbuam
+$ git clone https://github.com/PLVTON/rtaum
 ```
 
 Next up, you can build either [NativeUSB.ino](/Arduino/NativeUSB) or [SerialUSB.ino](/Arduino/SerialUSB) depending on your [microcontroller](https://www.arduino.cc/reference/en/language/functions/communication/serial/). If you don't know which one your microcontroller should use, only one of them will be able to build, the other will throw an error.
