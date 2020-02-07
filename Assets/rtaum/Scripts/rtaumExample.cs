@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 // This script is used to write the data to the device
-public class bbaumExample : MonoBehaviour {
+public class rtaumExample : MonoBehaviour {
 
-    // bbaum is the bridge beetwen your computer and hardware
-    bbaum.DeviceReader myDevice = new bbaum.DeviceReader();
+    // rtaum is the bridge between your computer and hardware
+    rtaum.DeviceReader myDevice = new rtaum.DeviceReader();
 
     [Tooltip("SerialPort of your device.")]
     public string portName = "COM6";

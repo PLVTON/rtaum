@@ -5,7 +5,7 @@
     Random: This throws a random value from the queue out in order to drop the latest data?
 */
 
-namespace bbaum.Enumeration {
+namespace rtaum.Enumeration {
     public enum Mode {
         Oldest,
         Latest,

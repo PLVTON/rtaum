@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace bbaum {
+namespace rtaum {
     // IOThreadLines inherits IOThread
     public class IOThreadLines : IOThread {
 
