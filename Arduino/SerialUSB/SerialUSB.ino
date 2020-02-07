@@ -1,23 +1,42 @@
-// If you are using a non ARM CPU (Arduino Uno, Arduino Mega, ..)
 #define SERIAL_USB
 
+bool ledStatus = false;
+
 void setup() {
-  // You can choose any baud rate, just need to also change it in Unity.
-  Serial.begin(250000);
-  while (!Serial); // wait for Leonardo enumeration, others continue immediately
+    // Make sure the baud rate is the same as in Unity
+    Serial.begin(250000);
+    while (!Serial);
 }
 
 void loop() {
-  sendData("Hello World!");
-  
-  delay(5); // Choose your delay having in mind your ReadTimeout in Unity
+    readLine();
+    
+    delay(200);
 }
 
 void sendData(String data) {
-  Serial.println(data); // need a end-line because wrmlh.csharp use readLine method to receive data
+    Serial.println(data);
 }
 
-void receiveData() {
-  String incomingData = Serial.readString();
-  digitalWrite(13, incomingData == "" ? LOW : HIGH );
+void readLine() {
+    String data = "";
+
+    while (Serial.available() > 0) {
+        int input = Serial.read();
+
+        if (input == '\n') {
+            data.trim();
+            processData(data);
+            data = "";
+        } else {
+            data = data + char(input);
+        }
+    }
+}
+
+void processData(String readData) {
+    // readData is the data received from Unity
+
+    // If you want to send some data back
+    sendData(readData);
 }

@@ -4,12 +4,12 @@ using UnityEngine;
 using System.Threading;
 using System.IO.Ports;
 
-namespace wrmhl {
+namespace bbaum {
     public abstract class IOThread {
 
         // IOThread is the common Thread for receiving and sending data, but it's protocols depend on the derived class you use.
-        // Protocols are definined by this.ReadProtocol() and this.SendProtocol() which are overide by the top layer of this class.
-        // As of right now, the only top layer is wormhlThread_ReadLines.
+        // Protocols are definined by this.ReadProtocol() and this.SendProtocol() which are overridden by the top layer of this class.
+        // As of right now, the only top layer is IOThreadLines.
 
         public SerialPort deviceSerial;
         public bool looping = true;
@@ -18,7 +18,7 @@ namespace wrmhl {
         private int baudRate;
         private int readTimeout = 100;
 
-        private Thread WRMHLthread;
+        private Thread thread;
 
         // From Unity to Arduino
         private Queue outputQueue;
@@ -27,7 +27,7 @@ namespace wrmhl {
 
         private int QueueLength = 1;
 
-        // Constructor take the vars coming from wrmhl
+        // Constructor take the variables coming from bbaum
         public IOThread(string portName, int baudRate, int readTimeout, int QueueLength) {
             this.portName = portName;
             this.baudRate = baudRate;
@@ -43,20 +43,17 @@ namespace wrmhl {
 
         // Creates and starts the thread
         public void StartThread() {
-            outputQueue = Queue.Synchronized( new Queue() );
-            inputQueue  = Queue.Synchronized( new Queue() );
+            outputQueue = Queue.Synchronized(new Queue());
+            inputQueue = Queue.Synchronized(new Queue());
 
-            WRMHLthread = new Thread(ThreadLoop);
-            WRMHLthread.Start();
+            thread = new Thread(ThreadLoop);
+            thread.Start();
         }
 
-        // Open the SerialPort with the vars given by wrmhl
+        // Open the SerialPort with the parameters given by bbaum
         public void OpenFlow() {
-            // Define the SerialPort
             deviceSerial = new SerialPort(this.portName, this.baudRate);
-            // Set the readTimeout
             deviceSerial.ReadTimeout = this.readTimeout;
-            // Start the data Flow
             deviceSerial.Open();
         }
 
@@ -83,11 +80,6 @@ namespace wrmhl {
             return (string)inputQueue.Dequeue();
         }
 
-        // [TO-DO] Return the data stocked in the Queue. Independent from the protocol
-        public string ReadLatestThread() { 
-            return null; // TO DO: Delete it
-        }
-
         // Add the data to the write Queue. Independent from the protocol
         public void WriteThread(string dataToSend) {
             outputQueue.Enqueue(dataToSend);
@@ -97,12 +89,15 @@ namespace wrmhl {
         public void ThreadLoop() {
             while (ThreadIsLooping()) {
                 // Read data
-                object dataComingFromDevice = ReadProtocol();
-                if (dataComingFromDevice != null) {
-                    if (inputQueue.Count < QueueLength) {
-                        inputQueue.Enqueue(dataComingFromDevice);
+                try {
+                    object dataComingFromDevice = ReadProtocol();
+                    if (dataComingFromDevice != null) {
+                        if (inputQueue.Count < QueueLength) {
+                            inputQueue.Enqueue(dataComingFromDevice);
+                        }
                     }
                 }
+                catch (System.Exception) { }
                 // Send data
                 if (outputQueue.Count != 0) {
                     object dataToSend = outputQueue.Dequeue();
